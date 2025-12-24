@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RailGo | Train Ticket Booking</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --secondary: #9b59b6;
+            --light-bg: #ffffff;
+            --dark-bg: #121212;
+            --light-text: #333;
+            --dark-text: #f1f1f1;
+            --card-light: #f4f0f8;
+            --card-dark: #1e1e1e;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: var(--light-text);
+            transition: all 0.4s ease;
+        }
+
+        body.dark {
+            background: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        header {
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .toggle-btn {
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 60px 8%;
+            gap: 40px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            margin: 20px 0;
+            line-height: 1.7;
+        }
+
+        .hero img {
+            width: 100%;
+            animation: slideUp 1.5s ease;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 60px 8%;
+            background: linear-gradient(135deg, #ede4f6, #f8f5fc);
+        }
+
+        body.dark .features {
+            background: #181818;
+        }
+
+        .features h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            background: var(--card-light);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        body.dark .feature-card {
+            background: var(--card-dark);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* BOOKING */
+        .booking {
+            padding: 60px 8%;
+        }
+
+        .booking h2 {
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .booking form {
+            max-width: 500px;
+            margin: 40px auto;
+            background: var(--card-light);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        body.dark .booking form {
+            background: var(--card-dark);
+        }
+
+        .booking input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-family: 'Poppins';
+        }
+
+        .booking button {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary);
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .ticket {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--primary);
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        @keyframes slideUp {
+            from {transform: translateY(50px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">RailGo</div>
+    <button class="toggle-btn" onclick="toggleTheme()">Dark / Light</button>
+</header>
+
+<section class="hero">
+    <div>
+        <h1>Book Train Tickets Easily</h1>
+        <p>
+            RailGo is a modern and fast train ticket booking platform. 
+            Book tickets instantly, get a unique ticket ID, and travel stress-free.
+        </p>
+    </div>
+    <img src="https://cdn-icons-png.flaticon.com/512/1534/1534095.png" alt="Train">
+</section>
+
+<section class="features">
+    <h2>Why Choose RailGo?</h2>
+    <div class="feature-grid">
+        <div class="feature-card">🚆 Fast Booking</div>
+        <div class="feature-card">🎫 Unique Ticket ID</div>
+        <div class="feature-card">📱 Fully Responsive</div>
+        <div class="feature-card">🌗 Dark & Light Mode</div>
+    </div>
+</section>
+
+<section class="booking">
+    <h2>Book Your Ticket</h2>
+
+    <form onsubmit="generateTicket(event)">
+        <input type="text" placeholder="Passenger Name" required>
+        <input type="text" placeholder="From" required>
+        <input type="text" placeholder="To" required>
+        <input type="date" required>
+        <button type="submit">Book Ticket</button>
+        <div class="ticket" id="ticketNo"></div>
+    </form>
+</section>
+
+<footer>
+    © 2025 RailGo | College HTML & CSS Project
+</footer>
+
+<script>
+    function generateTicket(e) {
+        e.preventDefault();
+        const randomNo = "RG" + Math.floor(Math.random() * 1000000);
+        document.getElementById("ticketNo").innerText =
+            "Ticket Booked Successfully! Ticket No: " + randomNo;
+    }
+
+    function toggleTheme() {
+        document.body.classList.toggle("dark");
+    }
+</script>
+
+</body>
+</html>
